@@ -1,0 +1,34 @@
+{
+  "name": "pinodeplayer",
+  "version": "0.1.0",
+  "description": "Raspberry PI nodejs player",
+  "bin": {
+  	"upnpserver": "./bin/pinodeplayer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oeuillot/pinodeplayer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oeuillot/pinodeplayer/issues"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+	  "omxcontrol": "git://github.com/oeuillot/omxcontrol.git",
+		"commander": "2.2",
+		"express": "latest"
+	},
+	"devDependecies": {	 
+	},
+  "keywords": [
+    "Node.js",
+    "raspberry pi",
+    "omxplayer",
+    "omxcontrol"
+  ],
+  "author": "Olivier Oeuillot",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

@@ -31,18 +31,26 @@ app.get("/list/", function(req, res) {
 
 	res.write('{ "responseCode": "OK", "list": [');
 
+	var first = true;
+
 	fs.readdirSync(path).forEach(function(p) {
 		var stats = fs.statSync(path + '/' + p);
 		if (!stats) {
 			return;
 		}
 
+		if (first) {
+			first = false;
+		} else {
+			res.write(',');
+		}
+
 		if (stats.isDirectory()) {
-			res.write('/' + p);
+			res.write('"/' + p + "'");
 			return;
 		}
 
-		res.write(p);
+		res.write('"' + p + '"');
 	});
 
 	res.write(']}');

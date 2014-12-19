@@ -36,7 +36,13 @@ app.get("/list/*", function(req, res) {
 	var first = true;
 
 	fs.readdirSync(path).forEach(function(p) {
-		var stats = fs.statSync(path + '/' + p);
+		var stats;
+		try {
+			stats = fs.statSync(path + '/' + p);
+		} catch (x) {
+			console.error(x);
+			return;
+		}
 		if (!stats) {
 			return;
 		}

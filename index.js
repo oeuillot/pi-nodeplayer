@@ -1,6 +1,9 @@
 var express = require('express');
-var omx = require('omxcontrol');
+var OMXControl = require('omxcontrol');
+
+var omx = new OMXControl({
+
+});
 
 var app = express();
-app.use(omx());
-
+app.use(omx);

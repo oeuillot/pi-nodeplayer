@@ -67,9 +67,17 @@
 					return o1 - o2;
 				});
 
+				var opt = document.createElement("OPTION");
+				opt.value = "..";
+
+				var txt = document.createTextNode("[Dossier parent]);
+				opt.appendChild(txt);
+
+				comp.appendChild(opt);
+
 				list.forEach(function(item) {
 					var opt = document.createElement("OPTION");
-					opt.value = item
+					opt.value = item;
 
 					var txt = document.createTextNode(item);
 					opt.appendChild(txt);
@@ -91,8 +99,19 @@
 			fillList();
 			return;
 		}
+		if (path==".."") {
+			var i=p.lastIndexOf("/");
+			if (i>0) {
+				p=p.substring(0, i);
+			} else if (i==0) {
+				p="/";
+			}
+			document.getElementById("p").innerHTML = p;
+			fillList();			
+			return;
+		}
 
-		cmd("play" + p + path);
+		cmd("start" + p + path);
 	}
 
 	//]]>
@@ -110,7 +129,6 @@
 	</div>
 	<select id="list" size="10" onclick="play()">
 	</select>
-	<input id="back" type="button" value="Dossier parent" onclick="back()" />
 
 </body>
 

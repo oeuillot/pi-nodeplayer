@@ -15,7 +15,7 @@ app.use(omx.express);
 
 app.get("/list/*", function(req, res) {
 
-	var path = MOVIES_PATH + req.path.substring(5);
+	var path = MOVIES_PATH + decodeURIComponent(req.path.substring(5));
 
 	console.log("Path=" + path);
 

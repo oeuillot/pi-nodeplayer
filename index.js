@@ -10,9 +10,10 @@ var omx = new OMXControl({
 var app = express();
 app.use(omx.express);
 
-app.get("/list:path", function(req, res) {
+app.get("/list/:path", function(req, res) {
 
-	var path = MOVIES_PATH + "/" + req.params.path;
+	var path = MOVIES_PATH + req.path.substring(6);
+
 	if (!fs.existsSync(path)) {
 		res.status(404);
 		res.end();

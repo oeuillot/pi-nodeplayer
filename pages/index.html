@@ -9,9 +9,13 @@
 		var xhr = new XMLHttpRequest();
 
 		xhr.open("GET", "omx/" + type, false);
-		var ret = xhr.send(null);
+		xhr.send(null);
 
-		alert(ret);
+		var obj = JSON.parse(xhr.responseText);
+
+		if (obj.resultCode !== "OK") {
+			alert(obj.resultCode + " " + obj.message);
+		}
 	}
 
 	//]]>

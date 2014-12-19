@@ -5,11 +5,13 @@
 <style type="text/css">
 #play, #pause, #quit {
 	width: 80px;
+	margin: 8px 10px;
 }
 
 #list {
 	display: block;
 	width: 160px;
+	margin-top: 16px;
 }
 </style>
 
@@ -29,10 +31,15 @@
 		}
 	}
 
-	function fillList(id, path) {
+	function fillList(path) {
 		var xhr = new XMLHttpRequest();
 
-		xhr.open("GET", "list/" + path, false);
+		var path = document.getElementById("p").innerHTML;
+		if (!path) {
+			path = "/";
+		}
+
+		xhr.open("GET", "list" + path, false);
 		xhr.send(null);
 
 		var obj = JSON.parse(xhr.responseText);
@@ -40,14 +47,27 @@
 		if (obj.returnCode !== "OK") {
 			alert(obj.returnCode + " " + obj.message);
 		} else {
-			var comp = document.getElementById(id);
+			var comp = document.getElementById('list');
 
 			for (; comp.firstChild;) {
 				comp.removeChild(comp.firstChild);
 			}
 
-			if (obj.list) {
-				obj.list.forEach(function(item) {
+			var list = obj.list;
+			if (list) {
+				list.sort(function(o1, o2) {
+					if (o1.charAt(0) == '/') {
+						if (o2.charAt(0) != '/') {
+							return -1;
+						}
+					} else if (o2.charAt(0) == '/') {
+						return 1;
+					}
+
+					return o1 - o2;
+				});
+
+				list.forEach(function(item) {
 					var opt = document.createElement("OPTION");
 					opt.value = item
 
@@ -60,18 +80,37 @@
 		}
 	}
 
+	function play() {
+		var comp = document.getElementById('list');
+
+		var p = document.getElementById("p").innerHTML;
+
+		var path = comp.options[comp.selectedIndex].value;
+		if (path.charAt(0) == '/') {
+			document.getElementById("p").innerHTML = (p == '/') ? path : ('/' + path);
+			fillList();
+			return;
+		}
+
+		cmd("play" + p + path);
+	}
+
 	//]]>
 </script>
 </head>
 
-<body onload="fillList('list', '')">
+<body onload="fillList()">
 	<input id="pause" type="button" value="Pause" onclick="cmd('pause')"
 		style="width: 80px" />
 	<input id="play" type="button" value="Reprise" onclick="cmd('play')" />
 	<input id="quit" type="button" value="Arret" onclick="cmd('quit')" />
 
-	<select id="list" size="10" onclick="play('list')">
+	<div id="path">
+		Chemin: <span id="p"></span>
+	</div>
+	<select id="list" size="10" onclick="play()">
 	</select>
+	<input id="back" type="button" value="Retour" onclick="back()" />
 
 </body>
 

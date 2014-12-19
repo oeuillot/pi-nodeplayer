@@ -32,7 +32,7 @@ app.get("/list/", function(req, res) {
 	res.write('{ "responseCode": "OK", "list": [');
 
 	fs.readdirSync(path).forEach(function(p) {
-		var stats = fs.statSync(p);
+		var stats = fs.statSync(path + '/' + p);
 		if (!stats) {
 			return;
 		}

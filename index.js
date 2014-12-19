@@ -17,6 +17,8 @@ app.get("/list/", function(req, res) {
 
 	var path = MOVIES_PATH + req.path.substring(5);
 
+	console.log("Path=" + path);
+
 	if (!fs.existsSync(path)) {
 		res.status(404);
 		res.end();

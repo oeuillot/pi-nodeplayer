@@ -1,6 +1,7 @@
 var express = require('express');
 var OMXControl = require('omxcontrol');
 var fs = require('fs');
+var os = require('os');
 
 var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=0, max-age=1,post-check=0, pre-check=0";
 
@@ -70,7 +71,7 @@ app.get("/list/*", function(req, res) {
 
 app.get("/index.html", function(req, res) {
 	res.render('index.ejs', {
-		hostname: 'moi'
+		hostname: os.hostname()
 	});
 });
 

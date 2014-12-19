@@ -67,13 +67,15 @@
 					return o1 - o2;
 				});
 
-				var opt = document.createElement("OPTION");
-				opt.value = "..";
+				if (path != "/") {
+					var opt = document.createElement("OPTION");
+					opt.value = "..";
 
-				var txt = document.createTextNode("[Dossier parent]");
-				opt.appendChild(txt);
+					var txt = document.createTextNode("[Dossier parent]");
+					opt.appendChild(txt);
 
-				comp.appendChild(opt);
+					comp.appendChild(opt);
+				}
 
 				list.forEach(function(item) {
 					var opt = document.createElement("OPTION");
@@ -88,7 +90,7 @@
 		}
 	}
 
-	function play() {
+	function play(playVideo) {
 		var comp = document.getElementById('list');
 
 		var p = document.getElementById("p").innerHTML;
@@ -99,19 +101,21 @@
 			fillList();
 			return;
 		}
-		if (path=="..") {
-			var i=p.lastIndexOf("/");
-			if (i>0) {
-				p=p.substring(0, i);
-			} else if (i==0) {
-				p="/";
+		if (path == "..") {
+			var i = p.lastIndexOf("/");
+			if (i > 0) {
+				p = p.substring(0, i);
+			} else if (i == 0) {
+				p = "/";
 			}
 			document.getElementById("p").innerHTML = p;
-			fillList();			
+			fillList();
 			return;
 		}
 
-		cmd("start" + p + path);
+		if (playVideo) {
+			cmd("start" + p + path);
+		}
 	}
 
 	//]]>
@@ -129,6 +133,7 @@
 	</div>
 	<select id="list" size="10" onclick="play()">
 	</select>
+	<input id="start" type="button" value="Afficher" onclick="play()" />
 
 </body>
 

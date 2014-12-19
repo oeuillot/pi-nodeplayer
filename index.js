@@ -2,6 +2,8 @@ var express = require('express');
 var OMXControl = require('omxcontrol');
 var fs = require('fs');
 
+var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=0, max-age=1,post-check=0, pre-check=0";
+
 var MOVIES_PATH = "/home/olivier/Films";
 
 var omx = new OMXControl({

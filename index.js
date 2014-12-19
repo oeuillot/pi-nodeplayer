@@ -68,8 +68,8 @@ app.get("/list/*", function(req, res) {
 	res.end();
 });
 
-app.get("index.html", function(req, res) {
-	res.render('pages/index', {
+app.get("/index.html", function(req, res) {
+	res.render('pages/index.html', {
 		hostname: 'moi'
 	});
 });

@@ -29,7 +29,7 @@ app.get("/list/", function(req, res) {
 	};
 	res.writeHead(200, hs);
 
-	var buf = '{ "responseCode": "OK", "list": [';
+	var buf = '{ "returnCode": "OK", "list": [';
 
 	var first = true;
 
@@ -46,7 +46,7 @@ app.get("/list/", function(req, res) {
 		}
 
 		if (stats.isDirectory()) {
-			buf += '"/' + p + "'";
+			buf += '"/' + p + '"';
 			return;
 		}
 

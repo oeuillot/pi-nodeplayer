@@ -1,5 +1,6 @@
 var express = require('express');
 var OMXControl = require('omxcontrol');
+var fs = require('fs');
 
 var MOVIES_PATH = "/home/olivier/Films";
 

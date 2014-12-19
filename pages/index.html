@@ -18,14 +18,48 @@
 		}
 	}
 
+	function fillList(id, path) {
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "list/" + path, false);
+		xhr.send(null);
+
+		var obj = JSON.parse(xhr.responseText);
+
+		if (obj.returnCode !== "OK") {
+			alert(obj.returnCode + " " + obj.message);
+		} else {
+			var comp = document.getElementById(id);
+
+			for (; comp.firstChild;) {
+				comp.removeChild(comp.firstChild);
+			}
+
+			if (obj.list) {
+				obj.list.forEach(function(item) {
+					var opt = document.createElement("OPTION");
+					opt.value = item
+
+					var txt = document.createTextNode(item);
+					opt.appendChild(txt);
+
+					comp.appendChild(opt);
+				})
+			}
+		}
+	}
+
 	//]]>
 </script>
 </head>
 
-<body>
+<body onload="fillList('liste', '')">
 	<input type="button" value="Pause" onclick="cmd('pause')" />
 	<input type="button" value="Reprise" onclick="cmd('play')" />
 	<input type="button" value="Arret" onclick="cmd('quit')" />
+
+	<select id="liste" size="10" onclick="play('liste')">
+	</select>
 
 </body>
 

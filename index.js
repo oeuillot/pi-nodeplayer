@@ -6,4 +6,4 @@ var omx = new OMXControl({
 });
 
 var app = express();
-app.use(omx);
+app.use(omx.express);

@@ -119,6 +119,9 @@
 		document.getElementById("start").disabled = false;
 
 		if (playVideo) {
+			if (p != "/") {
+				p += "/";
+			}
 			cmd("start" + p + path);
 		}
 	}

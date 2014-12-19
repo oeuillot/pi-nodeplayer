@@ -74,6 +74,10 @@ app.get("/index.html", function(req, res) {
 	});
 });
 
+app.get("/", function(req, res) {
+	res.redirect("/index.html");
+});
+
 app.use(express.static(__dirname + '/pages'));
 
 app.listen(8080);

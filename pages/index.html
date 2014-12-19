@@ -10,7 +10,7 @@
 
 #list {
 	display: block;
-	width: 160px;
+	width: 240px;
 	margin-top: 16px;
 }
 </style>
@@ -87,7 +87,7 @@
 
 		var path = comp.options[comp.selectedIndex].value;
 		if (path.charAt(0) == '/') {
-			document.getElementById("p").innerHTML = (p == '/') ? path : ('/' + path);
+			document.getElementById("p").innerHTML = (p == '/') ? path : (p + path);
 			fillList();
 			return;
 		}
@@ -106,11 +106,11 @@
 	<input id="quit" type="button" value="Arret" onclick="cmd('quit')" />
 
 	<div id="path">
-		Chemin: <span id="p"></span>
+		Chemin: <span id="p">/</span>
 	</div>
 	<select id="list" size="10" onclick="play()">
 	</select>
-	<input id="back" type="button" value="Retour" onclick="back()" />
+	<input id="back" type="button" value="Dossier parent" onclick="back()" />
 
 </body>
 

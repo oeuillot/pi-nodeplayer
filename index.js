@@ -69,7 +69,7 @@ app.get("/list/*", function(req, res) {
 });
 
 app.get("/index.html", function(req, res) {
-	res.render('index.html', {
+	res.render('index.ejs', {
 		hostname: 'moi'
 	});
 });

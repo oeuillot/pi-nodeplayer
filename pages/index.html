@@ -1,0 +1,28 @@
+<html>
+<head>
+<TITLE>PI NodeJS Player</TITLE>
+
+<script type="text/javascript">
+	//<![CDATA[ 
+
+	function cmd(type) {
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "omx/" + type, false);
+		var ret = xhr.send(null);
+
+		alert(ret);
+	}
+
+	//]]>
+</script>
+</head>
+
+<body>
+	<input type="button" value="Pause" onclick="cmd('pause')" />
+	<input type="button" value="Reprise" onclick="cmd('play')" />
+	<input type="button" value="Arret" onclick="cmd('quit')" />
+
+</body>
+
+</html>

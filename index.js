@@ -15,7 +15,7 @@ app.use(omx.express);
 
 app.get("/list/", function(req, res) {
 
-	var path = MOVIES_PATH + req.path.substring(6);
+	var path = MOVIES_PATH + req.path.substring(5);
 
 	if (!fs.existsSync(path)) {
 		res.status(404);

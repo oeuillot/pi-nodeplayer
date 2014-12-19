@@ -18,7 +18,8 @@
   "dependencies": {
 	  "omxcontrol": "git://github.com/oeuillot/omxcontrol.git",
 		"commander": "2.2",
-		"express": "latest"
+		"express": "latest",
+		"ejs": "latest"
 	},
 	"devDependecies": {	 
 	},

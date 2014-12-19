@@ -13,6 +13,8 @@ var omx = new OMXControl({
 var app = express();
 app.use(omx.express);
 
+app.set('view engine', 'ejs');
+
 app.get("/list/*", function(req, res) {
 
 	var path = MOVIES_PATH + decodeURIComponent(req.path.substring(5));
@@ -66,6 +68,14 @@ app.get("/list/*", function(req, res) {
 	res.end();
 });
 
+app.get("index.html", function(req, res) {
+	res.render('pages/index', {
+		hostname: 'moi'
+	});
+});
+
 app.use(express.static(__dirname + '/pages'));
 
 app.listen(8080);
+
+console.log("Server is ready !");

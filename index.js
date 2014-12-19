@@ -29,7 +29,7 @@ app.get("/list/", function(req, res) {
 	};
 	res.writeHead(200, hs);
 
-	res.write('{ "responseCode": "OK", "list": [');
+	var buf = '{ "responseCode": "OK", "list": [';
 
 	var first = true;
 
@@ -42,18 +42,19 @@ app.get("/list/", function(req, res) {
 		if (first) {
 			first = false;
 		} else {
-			res.write(',');
+			buf += ',';
 		}
 
 		if (stats.isDirectory()) {
-			res.write('"/' + p + "'");
+			buf += '"/' + p + "'";
 			return;
 		}
 
-		res.write('"' + p + '"');
+		buf += '"' + p + '"';
 	});
+	buf += ']}';
 
-	res.write(']}');
+	res.write(buf);
 	res.end();
 });
 

@@ -12,10 +12,9 @@
 	display: block;
 	width: 320px;
 	margin-top: 16px;
-}
-
-select {
-    -webkit-appearance: listbox;
+	max-height: 320px;
+	
+	overflow: auto;
 }
 
 </style>
@@ -74,36 +73,43 @@ select {
 					return o1 - o2;
 				});
 
+				var li=document.createElement("LI");
+				comp.appendChild(li);
 				if (path != "/") {
-					var opt = document.createElement("OPTION");
+					var opt = document.createElement("A");
 					opt.value = "..";
+					opt.href="javascript:void(0)";
+					opt.onclick=playItem
+					opt.innerHTML="[Dossier parent]";
 
-					var txt = document.createTextNode("[Dossier parent]");
-					opt.appendChild(txt);
-
-					comp.appendChild(opt);
+					li.appendChild(opt);
 				}
 
 				list.forEach(function(item) {
-					var opt = document.createElement("OPTION");
+					var li=document.createElement("LI");
+					comp.appendChild(li);
+					
+					var opt = document.createElement("A");
 					opt.value = item;
+					opt.href="javascript:void(0)";
+					opt.onclick=playItem
 
 					var txt = document.createTextNode(item);
 					opt.appendChild(txt);
 
-					comp.appendChild(opt);
+					li.appendChild(opt);
 				});
 
 			}
 		}
 	}
 
-	function play(playVideo) {
+	function playItem(playVideo) {
 		var comp = document.getElementById('list');
 
 		var p = document.getElementById("p").innerHTML;
 
-		var path = comp.options[comp.selectedIndex].value;
+		var path = this.value;
 		if (path.charAt(0) == '/') {
 			document.getElementById("p").innerHTML = (p == '/') ? path : (p + path);
 			fillList();
@@ -123,14 +129,14 @@ select {
 
 		document.getElementById("start").disabled = false;
 
-		if (playVideo) {
+		if (true || playVideo) {
 			if (p != "/") {
 				p += "/";
 			}
-			cmd("start" + p + path);
+			alert("start" + p + path);
 		}
 	}
-
+	
 	//]]>
 </script>
 </head>
@@ -146,8 +152,8 @@ select {
 	<div id="path">
 		Chemin: <span id="p">/</span>
 	</div>
-	<select id="list" size="10" onchange="play()">
-	</select>
+	<ul id="list" >
+	</ul>
 	<input id="start" type="button" value="Afficher" onclick="play(true)"
 		disabled="disabled" />
 

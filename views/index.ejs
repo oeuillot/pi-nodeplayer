@@ -73,9 +73,10 @@
 					return o1 - o2;
 				});
 
-				var li=document.createElement("LI");
-				comp.appendChild(li);
 				if (path != "/") {
+					var li=document.createElement("LI");
+					comp.appendChild(li);
+
 					var opt = document.createElement("A");
 					opt.value = "..";
 					opt.href="javascript:void(0)";

@@ -16,7 +16,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-	  "omxcontrol": "git://github.com/oeuillot/omxcontrol.git",
+	  "omxplayer": "git://github.com/oeuillot/node-omxplayer.git",
 		"commander": "2.2",
 		"express": "latest",
 		"ejs": "latest"

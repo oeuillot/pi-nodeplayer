@@ -8,7 +8,7 @@ var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=
 
 OMXPlayer.fillCommanderOptions(commander);
 
-commander.option("--moviesBasePath", "Movies base path");
+commander.option("--moviesBasePath <path>", "Movies base path");
 
 commander.parse(process.argv);
 
@@ -87,4 +87,4 @@ app.use(express.static(__dirname + '/pages'));
 
 app.listen(8080);
 
-console.log("Server is ready !");
+console.log("Server is ready !  (moviesBasePath=" + commander.moviesBasePath + ")");

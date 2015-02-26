@@ -9,7 +9,8 @@ var MOVIES_PATH = "/home/pi/Films/";
 
 var omx = new OMXPlayer({
 	moviesBasePath: MOVIES_PATH,
-	omxPlayerPath: "/usr/bin/omxplayer"
+	omxPlayerPath: "/usr/bin/omxplayer",
+	genlog: true
 });
 
 var app = express();

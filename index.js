@@ -13,16 +13,15 @@ var omx = new OMXPlayer({
 
 var app = express();
 
-console.log("Express=", omx.express);
 app.use(omx.express);
 
 app.set('view engine', 'ejs');
 
 app.get("/list/*", function(req, res) {
 
-	var path = MOVIES_PATH + decodeURIComponent(req.path.substring(5));
+	var path = MOVIES_PATH + decodeURIComponent(req.path.substring(6));
 
-	console.log("Path=" + path);
+	console.log("List path=" + path);
 
 	if (!fs.existsSync(path)) {
 		res.status(404);

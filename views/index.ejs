@@ -4,7 +4,8 @@
 
 <style type="text/css">
 #play, #pause, #stop, #start {
-	width: 80px;
+	width: 100px;
+	padding: 4px;
 	margin: 8px 10px;
 }
 
@@ -19,7 +20,7 @@
 }
 
 #list LI {
-	padding: 4px;
+	padding: 8px;
 	border: 1px solid #AAA;
 	background-color: #CCC;
 	margin: 4px;
@@ -101,9 +102,9 @@
 					comp.appendChild(li);
 
 					var opt = document.createElement("A");
-					opt.value = "..";
+					li.value = "..";
 					opt.href="javascript:void(0)";
-					opt.onclick=playItem
+					li.onclick=playItem
 					opt.innerHTML="[Dossier parent]";
 
 					li.setAttribute("directory", true);
@@ -115,9 +116,9 @@
 					comp.appendChild(li);
 					
 					var opt = document.createElement("A");
-					opt.value = item;
+					li.value = item;
 					opt.href="javascript:void(0)";
-					opt.onclick=playItem
+					li.onclick=playItem
 
 					var txt = document.createTextNode(item);
 					opt.appendChild(txt);
@@ -162,7 +163,7 @@
 			if (p != "/") {
 				p += "/";
 			}
-			alert("start" + p + path);
+			cmd("Start", p);
 		}
 	}
 	

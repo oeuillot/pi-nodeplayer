@@ -236,7 +236,8 @@
 				document.getElementById("play").disabled = (!pp || pp==="Playing" || pp==="Stopped");
 				document.getElementById("stop").disabled = (!pp || pp==="Stopped");
 				
-				document.getElementById("volume").innerHTML=((properties.Volume>0)?"+":"")+String(properties.Volume);
+				var v=Math.floor(properties.Volume*10)/10;
+				document.getElementById("volume").innerHTML=((v>0)?"+":"")+String(v);
 				
 				document.getElementById("positionBlock").style.display=(pp==="Pause" || pp==="Playing")?"inline":"none";
 				document.getElementById("position").innerHTML=formatPosition(properties.Position);

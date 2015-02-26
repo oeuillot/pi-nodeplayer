@@ -206,9 +206,9 @@
 				
 				var pp=properties.PlaybackStatus;
 								
-				document.getElementById("pause").disabled = (!pp || pp==="Pause" || pp==="Stop");
-				document.getElementById("play").disabled = (!pp || pp==="Playing" || pp==="Stop");
-				document.getElementById("stop").disabled = (!pp || pp==="Stop");
+				document.getElementById("pause").disabled = (!pp || pp==="Paused" || pp==="Stopped");
+				document.getElementById("play").disabled = (!pp || pp==="Playing" || pp==="Stopped");
+				document.getElementById("stop").disabled = (!pp || pp==="Stopped");
 				
 				document.getElementById("volume").innerHTML=properties.Volume;
 				
@@ -240,7 +240,7 @@
 
 	<input id="pause" type="button" value="Pause" onclick="cmd('Pause')"
 		style="width: 80px" disabled />
-	<input id="play" type="button" value="Reprise" onclick="cmd('Play')" disabled />
+	<input id="play" type="button" value="Reprise" onclick="cmd('PlayPause')" disabled />
 	<input id="stop" type="button" value="Arret" onclick="cmd('Stop')" disabled />
 
 	<div id="path">

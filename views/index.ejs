@@ -12,12 +12,14 @@
 #volume {
 	width: 64px;
 	text-align: center;
+	display: inline-flex;
+	padding: 4px;
 }
 
 #list {
 	display: block;
 	width: 320px;
-	margin-top: 16px;
+	margin-top: 10px;
 	max-height: 320px;
 	list-style: none;
 	
@@ -34,6 +36,11 @@
 #list LI[directory] {
 	border: 1px solid #AA7;
 	background-color: #CCA;
+}
+
+#list LI[selected] {
+	border: 1px solid #A66;
+	background-color: #C88;
 }
 
 #list A {
@@ -162,6 +169,12 @@
 			return;
 		}
 
+		var oldSelected=document.querySelector("LI[selected]");
+		if (oldSelected) {
+			oldSelected.removeAttribute("selected");
+		}
+		this.setAttribute("selected", true);	
+
 		document.getElementById("start").disabled = false;
 
 		if (true || playVideo) {
@@ -194,6 +207,10 @@
 				document.getElementById("stop").disabled = (!pp || pp==="Stop");
 				
 				document.getElementById("volume").innerHTML=properties.Volume;
+				
+				if (pp==="Pause" || ppp==="Playing") {
+					document.getElementById("position").innerHTML=properties.Position;
+				}
 			}
 		};
 		
@@ -225,12 +242,15 @@
 	</div>
 	<ul id="list" >
 	</ul>
-	<input id="start" type="button" value="Afficher" onclick="play(true)"
-		disabled="disabled" />
-	<br>
-	<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
-	<span id="volume"></span>
-	<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
+	<div style="padding-left: 120px">
+		<input id="start" type="button" value="Afficher" onclick="play(true)" disabled="disabled" />
+	</div>
+	<div style="padding-top: 10px">
+		<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
+		<span id="volume">0</span>
+		<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
+		<span id="position">0</span>
+	</div>
 
 </body>
 

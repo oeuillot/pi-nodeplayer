@@ -102,7 +102,7 @@
 					comp.appendChild(li);
 
 					var opt = document.createElement("A");
-					li.value = "..";
+					li.path = "..";
 					opt.href="javascript:void(0)";
 					li.onclick=playItem
 					opt.innerHTML="[Dossier parent]";
@@ -116,7 +116,7 @@
 					comp.appendChild(li);
 					
 					var opt = document.createElement("A");
-					li.value = item;
+					li.path = item;
 					opt.href="javascript:void(0)";
 					li.onclick=playItem
 
@@ -139,7 +139,7 @@
 
 		var p = document.getElementById("p").innerHTML;
 
-		var path = this.value;
+		var path = this.path;
 		if (path.charAt(0) == '/') {
 			document.getElementById("p").innerHTML = (p == '/') ? path : (p + path);
 			fillList();
@@ -164,8 +164,33 @@
 				p += "/";
 			}
 			cmd("Start", p);
-		}
+		}		
 	}
+	
+	setInterval(function() {
+		
+		var xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange=function() {
+			if (xhr.readyState==4 && xhr.status==200) {
+				var obj = JSON.parse(xhr.responseText);
+				
+				console.log("Sync", obj);
+				
+				var pp=obj && obj.PlaybackStatus;
+								
+				document.getElementById("pause").disabled = (!pp || pp==="Pause");
+				document.getElementById("play").disabled = (!pp || pp==="Playing");
+				document.getElementById("stop").disabled = (!pp || pp==="Stop");
+			}
+		};
+		
+		xhr.open("GET", "omx/Properties, true);
+		xhr.send(null);
+
+		
+		
+	}, 1000);
 	
 	//]]>
 </script>
@@ -175,9 +200,9 @@
 <H1><%= hostname%></H1>
 
 	<input id="pause" type="button" value="Pause" onclick="cmd('Pause')"
-		style="width: 80px" />
-	<input id="play" type="button" value="Reprise" onclick="cmd('Play')" />
-	<input id="stop" type="button" value="Arret" onclick="cmd('Stop')" />
+		style="width: 80px" disabled />
+	<input id="play" type="button" value="Reprise" onclick="cmd('Play')" disabled />
+	<input id="stop" type="button" value="Arret" onclick="cmd('Stop')" disabled />
 
 	<div id="path">
 		Chemin: <span id="p">/</span>

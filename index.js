@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 app.get("/list/*", function(req, res) {
 
-	var path = MOVIES_PATH + decodeURIComponent(req.path.substring(6));
+	var path = commander.moviesBasePath + decodeURIComponent(req.path.substring(6));
 
 	console.log("List path=" + path);
 

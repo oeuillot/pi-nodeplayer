@@ -2,14 +2,17 @@ var express = require('express');
 var OMXPlayer = require('omxplayer');
 var fs = require('fs');
 var os = require('os');
+var commander = require('commander');
 
 var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=0, max-age=1,post-check=0, pre-check=0";
 
-var MOVIES_PATH = "/home/pi/Films/";
+OMXPlayer.fillCommanderOptions(commander);
 
-var omx = new OMXPlayer({
-	moviesBasePath: MOVIES_PATH
-});
+commander.option("--moviesBasePath", "Movies base path");
+
+commander.parse(process.argv);
+
+var omx = new OMXPlayer(commander);
 
 var app = express();
 

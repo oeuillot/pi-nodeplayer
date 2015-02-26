@@ -50,7 +50,7 @@
 		var xhr = new XMLHttpRequest();
 
 		var p="omx/"+type;
-		if (parameter) {
+		if (parameter!==undefined) {
 			p+="/"+parameter;
 		}
 
@@ -199,10 +199,14 @@
 		
 		xhr.open("GET", "omx/Properties", true);
 		xhr.send(null);
-
-		
 		
 	}, 1000);
+
+	function volume(delta) {
+	var v=parseFloat(document.getElementById("volume").innerHTML || 0);
+	
+		cmd("Volume", v);
+	}
 	
 	//]]>
 </script>
@@ -225,7 +229,7 @@
 		disabled="disabled" />
 	<br>
 	<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
-	<span id="volume">
+	<span id="volume"></span>
 	<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
 
 </body>

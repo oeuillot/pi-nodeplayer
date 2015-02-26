@@ -27,6 +27,7 @@
 	margin-top: 10px;
 	max-height: 320px;
 	list-style: none;
+	margin-bottom: 0;
 	
 	overflow: auto;
 }
@@ -207,8 +208,8 @@
 				
 				var pp=properties.PlaybackStatus;
 								
-				document.getElementById("pause").disabled = (!pp || pp==="Pause");
-				document.getElementById("play").disabled = (!pp || pp==="Playing");
+				document.getElementById("pause").disabled = (!pp || pp==="Pause" || pp==="Stop");
+				document.getElementById("play").disabled = (!pp || pp==="Playing" || pp==="Stop");
 				document.getElementById("stop").disabled = (!pp || pp==="Stop");
 				
 				document.getElementById("volume").innerHTML=properties.Volume;
@@ -226,7 +227,7 @@
 	function volume(delta) {
 	var v=parseFloat(document.getElementById("volume").innerHTML || 0);
 	
-		cmd("Volume", v);
+		cmd("Volume", v+delta);
 	}
 	
 	//]]>
@@ -246,7 +247,7 @@
 	</div>
 	<ul id="list" >
 	</ul>
-	<div style="padding-left: 120px">
+	<div style="padding-left: 220px">
 		<input id="start" type="button" value="Afficher" onclick="play(true)" disabled="disabled" />
 	</div>
 	<div style="padding-top: 10px">

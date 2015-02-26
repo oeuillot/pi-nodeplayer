@@ -12,6 +12,8 @@ var omx = new OMXPlayer({
 });
 
 var app = express();
+
+console.log("Express=", omx.express);
 app.use(omx.express);
 
 app.set('view engine', 'ejs');

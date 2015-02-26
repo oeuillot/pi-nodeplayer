@@ -153,11 +153,22 @@
 	}
 
 	function playItem(playVideo, path) {
-		var comp = document.getElementById('list');
-
+		var startButton= document.getElementById("start");
 		var p = document.getElementById("p").innerHTML;
 
-		path = path || this.path;
+		if (playVideo===true) {
+			startButton.disabled = true;
+
+			if (p != "/") {
+				p += "/";
+			}
+			cmd("Play", p+path);
+			return;
+		}
+	
+		var comp = document.getElementById('list');
+
+		path = this.path;
 		if (path.charAt(0) == '/') {
 			document.getElementById("p").innerHTML = (p == '/') ? path : (p + path);
 			fillList();
@@ -175,26 +186,15 @@
 			return;
 		}
 
+
 		var oldSelected=document.querySelector("LI[selected]");
 		if (oldSelected) {
 			oldSelected.removeAttribute("selected");
 		}
-		this.setAttribute("selected", true);	
-
-
-		var startButton= document.getElementById("start");
-		if (playVideo!==true) {
-			startButton.disabled = false;
-			startButton.path=path;
-			return;
-		}
-		
-		startButton.disabled = true;
-
-		if (p != "/") {
-			p += "/";
-		}
-		cmd("Play", p+path);
+		this.setAttribute("selected", true);
+			
+		startButton.disabled = false;
+		startButton.path=path;
 	}
 	
 	setInterval(function() {

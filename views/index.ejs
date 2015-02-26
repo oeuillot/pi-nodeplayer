@@ -10,10 +10,15 @@
 }
 
 #volume {
-	width: 64px;
+	width: 32px;
 	text-align: center;
-	display: inline-flex;
 	padding: 4px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#positionBlock {
+	margin-left: 48px;
 }
 
 #list {
@@ -208,9 +213,8 @@
 				
 				document.getElementById("volume").innerHTML=properties.Volume;
 				
-				if (pp==="Pause" || ppp==="Playing") {
-					document.getElementById("position").innerHTML=properties.Position;
-				}
+				document.getElementById("positionBlock").style.display=(pp==="Pause" || ppp==="Playing")?"inline":"";
+				document.getElementById("position").innerHTML=properties.Position;
 			}
 		};
 		
@@ -249,7 +253,8 @@
 		<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
 		<span id="volume">0</span>
 		<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
-		<span id="position">0</span>
+		
+		<span id="positionBlock">Position : <span id="position">0</span></span>
 	</div>
 
 </body>

@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 app.get("/list/*", function(req, res) {
 
-	var path = commander.moviesBasePath + decodeURIComponent(req.path.substring(6));
+	var path = commander.moviesBasePath + "/" + decodeURIComponent(req.path.substring(6));
 
 	console.log("List path=" + path);
 
@@ -43,6 +43,7 @@ app.get("/list/*", function(req, res) {
 	var first = true;
 
 	fs.readdirSync(path).forEach(function(p) {
+
 		var stats;
 		try {
 			stats = fs.statSync(path + '/' + p);

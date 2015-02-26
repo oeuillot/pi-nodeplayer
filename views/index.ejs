@@ -3,7 +3,7 @@
 <TITLE>PI NodeJS Player</TITLE>
 
 <style type="text/css">
-#play, #pause, #quit, #start {
+#play, #pause, #stop, #start {
 	width: 80px;
 	margin: 8px 10px;
 }
@@ -13,8 +13,26 @@
 	width: 320px;
 	margin-top: 16px;
 	max-height: 320px;
+	list-style: none;
 	
 	overflow: auto;
+}
+
+#list LI {
+	padding: 4px;
+	border: 1px solid #AAA;
+	background-color: #CCC;
+	margin: 4px;
+}
+
+#list LI[directory] {
+	border: 1px solid #AA7;
+	background-color: #CCA;
+}
+
+#list A {
+	text-decoration: none;
+	color: black;
 }
 
 </style>
@@ -22,10 +40,15 @@
 <script type="text/javascript">
 	//<![CDATA[ 
 
-	function cmd(type) {
+	function cmd(type, parameter) {
 		var xhr = new XMLHttpRequest();
 
-		xhr.open("GET", "omx/" + type, false);
+		var p="omx/"+type;
+		if (parameter) {
+			p+="/"+parameter;
+		}
+
+		xhr.open("GET", p, false);
 		xhr.send(null);
 
 		var obj = JSON.parse(xhr.responseText);
@@ -83,6 +106,7 @@
 					opt.onclick=playItem
 					opt.innerHTML="[Dossier parent]";
 
+					li.setAttribute("directory", true);
 					li.appendChild(opt);
 				}
 
@@ -97,6 +121,10 @@
 
 					var txt = document.createTextNode(item);
 					opt.appendChild(txt);
+					
+					if (txt.charAt(0)==='/') {
+						li.setAttribute("directory", true);					
+					}
 
 					li.appendChild(opt);
 				});
@@ -145,10 +173,10 @@
 <body onload="fillList()">
 <H1><%= hostname%></H1>
 
-	<input id="pause" type="button" value="Pause" onclick="cmd('pause')"
+	<input id="pause" type="button" value="Pause" onclick="cmd('Pause')"
 		style="width: 80px" />
-	<input id="play" type="button" value="Reprise" onclick="cmd('play')" />
-	<input id="quit" type="button" value="Arret" onclick="cmd('quit')" />
+	<input id="play" type="button" value="Reprise" onclick="cmd('Play')" />
+	<input id="stop" type="button" value="Arret" onclick="cmd('Stop')" />
 
 	<div id="path">
 		Chemin: <span id="p">/</span>

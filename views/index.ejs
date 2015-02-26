@@ -151,6 +151,24 @@
 			}
 		}
 	}
+	
+	function formatPosition(v) {
+		if (v<0) {
+			return "-";
+		}
+		
+		v=Math.floor(v/1000000);
+		var sec=v%60;
+		v=Math.floor(v/60);
+		var min=v%60;
+		var h=Math.floor(v/60);
+		
+		function pad(x) {
+			return (x>9)?x:"0"+x;
+		}
+		
+		return pad(h)+":"+pad(min)+":"+pad(sec);
+	}
 
 	function playItem(playVideo, path) {
 		var startButton= document.getElementById("start");
@@ -221,7 +239,7 @@
 				document.getElementById("volume").innerHTML=((properties.Volume>0)?"+":"")+String(properties.Volume);
 				
 				document.getElementById("positionBlock").style.display=(pp==="Pause" || pp==="Playing")?"inline":"";
-				document.getElementById("position").innerHTML=(properties.Position || 0);
+				document.getElementById("position").innerHTML=formatPosition(properties.Position);
 			}
 		};
 		
@@ -264,7 +282,7 @@
 		<span id="volume">0</span>
 		<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
 		
-		<span id="positionBlock">Position : <span id="position">0</span></span>
+		<span id="positionBlock">Position : <span id="position"></span></span>
 	</div>
 
 </body>

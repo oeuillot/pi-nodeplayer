@@ -181,11 +181,13 @@
 		}
 		this.setAttribute("selected", true);	
 
+
 		if (playVideo!==true) {
+			document.getElementById("start").disabled = false;
 			return;
 		}
 		
-		document.getElementById("start").disabled = false;
+		document.getElementById("start").disabled = true;
 
 		if (p != "/") {
 			p += "/";
@@ -214,7 +216,7 @@
 				document.getElementById("play").disabled = (!pp || pp==="Playing" || pp==="Stopped");
 				document.getElementById("stop").disabled = (!pp || pp==="Stopped");
 				
-				document.getElementById("volume").innerHTML=properties.Volume;
+				document.getElementById("volume").innerHTML=((properties.Volume>0)?"+":"")+String(properties.Volume);
 				
 				document.getElementById("positionBlock").style.display=(pp==="Pause" || ppp==="Playing")?"inline":"";
 				document.getElementById("position").innerHTML=properties.Position;

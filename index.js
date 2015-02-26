@@ -5,7 +5,7 @@ var os = require('os');
 
 var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=0, max-age=1,post-check=0, pre-check=0";
 
-var MOVIES_PATH = "/home/olivier/Films/";
+var MOVIES_PATH = "/home/pi/Films/";
 
 var omx = new OMXPlayer({
 	moviesBasePath: MOVIES_PATH

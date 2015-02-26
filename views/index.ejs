@@ -182,12 +182,14 @@
 		this.setAttribute("selected", true);	
 
 
+		var startButton= document.getElementById("start");
 		if (playVideo!==true) {
-			document.getElementById("start").disabled = false;
+			startButton.disabled = false;
+			startButton.path=path;
 			return;
 		}
 		
-		document.getElementById("start").disabled = true;
+		startButton.disabled = true;
 
 		if (p != "/") {
 			p += "/";

@@ -221,7 +221,7 @@
 				document.getElementById("volume").innerHTML=((properties.Volume>0)?"+":"")+String(properties.Volume);
 				
 				document.getElementById("positionBlock").style.display=(pp==="Pause" || pp==="Playing")?"inline":"";
-				document.getElementById("position").innerHTML=properties.Position;
+				document.getElementById("position").innerHTML=(properties.Position || 0);
 			}
 		};
 		

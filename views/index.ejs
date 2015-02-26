@@ -9,6 +9,11 @@
 	margin: 8px 10px;
 }
 
+#volume {
+	width: 64px;
+	text-align: center;
+}
+
 #list {
 	display: block;
 	width: 320px;
@@ -176,12 +181,19 @@
 				var obj = JSON.parse(xhr.responseText);
 				
 				console.log("Sync", obj);
+				if (!obj || !obj.value) {
+					return;
+				}
 				
-				var pp=obj && obj.PlaybackStatus;
+				var properties=obj.value;
+				
+				var pp=properties.PlaybackStatus;
 								
 				document.getElementById("pause").disabled = (!pp || pp==="Pause");
 				document.getElementById("play").disabled = (!pp || pp==="Playing");
 				document.getElementById("stop").disabled = (!pp || pp==="Stop");
+				
+				document.getElementById("volume").innerHTML=properties.Volume;
 			}
 		};
 		
@@ -211,6 +223,10 @@
 	</ul>
 	<input id="start" type="button" value="Afficher" onclick="play(true)"
 		disabled="disabled" />
+	<br>
+	<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
+	<span id="volume">
+	<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
 
 </body>
 

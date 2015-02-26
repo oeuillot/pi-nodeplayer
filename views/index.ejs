@@ -183,12 +183,10 @@
 
 		document.getElementById("start").disabled = false;
 
-		if (true || playVideo) {
-			if (p != "/") {
-				p += "/";
-			}
-			cmd("Start", p);
-		}		
+		if (p != "/") {
+			p += "/";
+		}
+		cmd("Play", p);
 	}
 	
 	setInterval(function() {
@@ -225,9 +223,12 @@
 	}, 1000);
 
 	function volume(delta) {
-	var v=parseFloat(document.getElementById("volume").innerHTML || 0);
+		var vol=document.getElementById("volume");
+		var v=parseFloat(vol.innerHTML || 0)+delta;
+		
+		vol.innerHTML=String(v);
 	
-		cmd("Volume", v+delta);
+		cmd("Volume", v);
 	}
 	
 	//]]>

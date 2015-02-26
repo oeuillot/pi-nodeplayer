@@ -152,12 +152,12 @@
 		}
 	}
 
-	function playItem(playVideo) {
+	function playItem(playVideo, path) {
 		var comp = document.getElementById('list');
 
 		var p = document.getElementById("p").innerHTML;
 
-		var path = this.path;
+		path = path || this.path;
 		if (path.charAt(0) == '/') {
 			document.getElementById("p").innerHTML = (p == '/') ? path : (p + path);
 			fillList();
@@ -220,7 +220,7 @@
 				
 				document.getElementById("volume").innerHTML=((properties.Volume>0)?"+":"")+String(properties.Volume);
 				
-				document.getElementById("positionBlock").style.display=(pp==="Pause" || ppp==="Playing")?"inline":"";
+				document.getElementById("positionBlock").style.display=(pp==="Pause" || pp==="Playing")?"inline":"";
 				document.getElementById("position").innerHTML=properties.Position;
 			}
 		};
@@ -257,7 +257,7 @@
 	<ul id="list" >
 	</ul>
 	<div style="padding-left: 220px">
-		<input id="start" type="button" value="Afficher" onclick="playItem(true)" disabled="disabled" />
+		<input id="start" type="button" value="Afficher" onclick="playItem(true, this.path)" disabled="disabled" />
 	</div>
 	<div style="padding-top: 10px">
 		<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />

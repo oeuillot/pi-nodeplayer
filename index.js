@@ -8,9 +8,7 @@ var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=
 var MOVIES_PATH = "/home/pi/Films/";
 
 var omx = new OMXPlayer({
-	moviesBasePath: MOVIES_PATH,
-	omxPlayerPath: "/usr/bin/omxplayer",
-	genlog: true
+	moviesBasePath: MOVIES_PATH
 });
 
 var app = express();

@@ -239,7 +239,7 @@
 				var v=Math.floor(properties.Volume*10)/10;
 				document.getElementById("volume").innerHTML=((v>0)?"+":"")+String(v);
 				
-				document.getElementById("positionBlock").style.display=(pp==="Pause" || pp==="Playing")?"inline":"none";
+				document.getElementById("positionBlock").style.display=(pp==="Paused" || pp==="Playing")?"inline":"none";
 				document.getElementById("position").innerHTML=formatPosition(properties.Position);
 			}
 		};

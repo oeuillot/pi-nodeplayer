@@ -9,6 +9,10 @@
 	margin: 8px 10px;
 }
 
+.volume .seek {
+	padding: 4px;
+}
+
 #volume {
 	width: 32px;
 	text-align: center;
@@ -239,7 +243,7 @@
 				var v=Math.floor(properties.Volume*10)/10;
 				document.getElementById("volume").innerHTML=((v>0)?"+":"")+String(v);
 				
-				document.getElementById("positionBlock").style.display=(pp==="Paused" || pp==="Playing")?"inline":"none";
+				document.getElementById("positionBlock").style.display=(pp==="Paused" || pp==="Playing")?"block":"none";
 				document.getElementById("position").innerHTML=formatPosition(properties.Position);
 			}
 		};
@@ -256,6 +260,9 @@
 		vol.innerHTML=((v>0)?"+":"")+String(v);
 	
 		cmd("Volume", v);
+	}
+	function seek(second) {
+		cmd("Seek", second*1000000);
 	}
 	
 	//]]>
@@ -279,11 +286,17 @@
 		<input id="start" type="button" value="Afficher" onclick="playItem(true, this.path)" disabled="disabled" />
 	</div>
 	<div style="padding-top: 10px">
-		<input id="volm" type="button" value="VOL -" onclick="volume(-1)" />
+		<input class="volume" type="button" value="VOL -" onclick="volume(-1)" />
 		<span id="volume">0</span>
-		<input id="volp" type="button" value="VOL +" onclick="volume(1)" />
+		<input class="volume" type="button" value="VOL +" onclick="volume(1)" />
 		
-		<span id="positionBlock" style="display: none">Position : <span id="position"></span></span>
+	</div>
+	<div style="padding-top: 10px" id="positionBlock" style="display: none">
+		<input class="seek" type="button" value="-5mn" onclick="seek(-60*5)" />
+		<input class="seek" type="button" value="-30s" onclick="seek(-30)" />
+		<span>Position : <span id="position"></span></span>
+		<input class="seek" type="button" value="+30s" onclick="seek(30)" />
+		<input class="seek" type="button" value="+5mn" onclick="seek(60*5)" />
 	</div>
 
 </body>

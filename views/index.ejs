@@ -181,6 +181,10 @@
 		}
 		this.setAttribute("selected", true);	
 
+		if (!playVideo) {
+			return;
+		}
+		
 		document.getElementById("start").disabled = false;
 
 		if (p != "/") {

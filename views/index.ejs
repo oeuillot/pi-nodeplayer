@@ -224,9 +224,9 @@
 
 	function volume(delta) {
 		var vol=document.getElementById("volume");
-		var v=parseFloat(vol.innerHTML || 0)+delta;
+		var v=Math.floor((parseFloat(vol.innerHTML || 0)+delta)*10)/10;
 		
-		vol.innerHTML=String(v);
+		vol.innerHTML=((v>0)?"+":"")+String(v);
 	
 		cmd("Volume", v);
 	}

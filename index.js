@@ -9,12 +9,19 @@ var NO_CACHE_CONTROL = "no-cache, private, no-store, must-revalidate, max-stale=
 OMXPlayer.fillCommanderOptions(commander);
 
 commander.option("--moviesBasePath <path>", "Movies base path");
+commander.option("--otherHostName <ip>", "Other site hostname");
 
 commander.parse(process.argv);
 
 var omx = new OMXPlayer(commander);
 
 var app = express();
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+});
 
 app.use(omx.express);
 
@@ -76,7 +83,8 @@ app.get("/list/*", function(req, res) {
 
 app.get("/index.html", function(req, res) {
 	res.render('index.ejs', {
-		hostname: os.hostname()
+		hostname: os.hostname(),
+		otherHostname: otherHostName
 	});
 });
 
@@ -85,6 +93,8 @@ app.get("/", function(req, res) {
 });
 
 app.use(express.static(__dirname + '/pages'));
+
+app.use('/movies', express.static(commander.moviesBasePath));
 
 app.listen(8080);
 

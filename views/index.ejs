@@ -13,6 +13,11 @@
 	padding: 4px;
 }
 
+.system {
+	margin-left: 16px;
+	height: 16px;
+}
+
 #volume {
 	width: 32px;
 	text-align: center;
@@ -282,8 +287,10 @@
 	</div>
 	<ul id="list" >
 	</ul>
-	<div style="padding-left: 220px">
+	<div style="padding-left: 160px">
 		<input id="start" type="button" value="Afficher" onclick="playItem(true, this.path)" disabled="disabled" />
+		
+		<input id="startOther" type="button" value="Autre #1" onclick="remotePlayItem(this.path)" disabled="disabled" />
 	</div>
 	<div style="padding-top: 10px">
 		<input class="volume" type="button" value="VOL -" onclick="volume(-1)" />

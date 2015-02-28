@@ -9,7 +9,7 @@
 	margin: 8px 10px;
 }
 
-.volume .seek {
+.volume, .seek, .system {
 	padding: 4px;
 }
 
@@ -299,6 +299,10 @@
 		<input class="seek" type="button" value="+5mn" onclick="seek(60*5)" />
 	</div>
 
+	<div style="padding-top: 10px">
+		<input class="system" type="button" onclick="confirm('Reboot ?') && cmd('Reboot')" value="Reboot" />
+		<input class="system" type="button" onclick="confirm('Halt ?') && cmd('Halt')" value="Halt" />
+	</div>
 </body>
 
 </html>

@@ -299,7 +299,13 @@
 		<input class="seek" type="button" value="+5mn" onclick="seek(60*5)" />
 	</div>
 
-	<div style="padding-top: 10px">
+	<div style="padding-top: 30px">
+		<input class="system" type="button" onclick="cmd('SelectAudio', 0)" value="Canal #1" />
+		<input class="system" type="button" onclick="cmd('SelectAudio', 1)" value="Canal #2" />
+		<input class="system" type="button" onclick="cmd('SelectAudio', 2)" value="Canal #3" />
+	</div>
+
+	<div style="padding-top: 30px">
 		<input class="system" type="button" onclick="confirm('Reboot ?') && cmd('Reboot')" value="Reboot" />
 		<input class="system" type="button" onclick="confirm('Halt ?') && cmd('Halt')" value="Halt" />
 	</div>

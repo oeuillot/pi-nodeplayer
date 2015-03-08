@@ -84,7 +84,7 @@ app.get("/list/*", function(req, res) {
 app.get("/index.html", function(req, res) {
 	res.render('index.ejs', {
 		hostname: os.hostname(),
-		otherHostname: otherHostName
+		otherHostname: commander.otherHostName
 	});
 });
 
